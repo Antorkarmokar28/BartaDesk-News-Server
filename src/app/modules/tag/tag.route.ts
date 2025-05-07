@@ -16,7 +16,7 @@ router.post(
 // get all tag route
 router.get('/', TagController.getAllTag);
 // get single tag route
-router.get('/:id', TagController.getSingleTag);
+router.get('/:_id', TagController.getSingleTag);
 //update tag route
 router.put(
   '/:_id',

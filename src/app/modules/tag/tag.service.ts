@@ -1,3 +1,5 @@
+import { StatusCodes } from 'http-status-codes';
+import AppError from '../../error/appError';
 import { ITag } from './tag.interface';
 import { Tag } from './tag.model';
 
@@ -12,18 +14,27 @@ const getAllTagFromDB = async () => {
 };
 
 const getSingleTagFromDB = async (id: string) => {
-  const result = await Tag.findOne({ id });
-  return result;
+  const tags = await Tag.findOne({ id });
+  if (!tags) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'Sorry tag is not found');
+  }
+  return tags;
 };
 
 const updateTagIntoDB = async (_id: string, data: ITag) => {
-  const result = await Tag.findByIdAndUpdate(_id, data, { new: true });
-  return result;
+  const tags = await Tag.findByIdAndUpdate(_id, data, { new: true });
+  if (!tags) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'Sorry tag is not found');
+  }
+  return tags;
 };
 
 const deleteTagFromDB = async (id: string) => {
-  const result = await Tag.findByIdAndDelete(id);
-  return result;
+  const tags = await Tag.findByIdAndDelete(id);
+  if (!tags) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'Sorry tag is not found');
+  }
+  return tags;
 };
 
 export const TagService = {
