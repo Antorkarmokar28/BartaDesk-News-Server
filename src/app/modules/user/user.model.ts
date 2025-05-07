@@ -1,5 +1,5 @@
 import mongoose, { model } from "mongoose";
-import { IUser } from "./user.interface";
+import { IUser, UserModel } from "./user.interface";
 import bcrypt from "bcrypt";
 import config from "../../config";
 const userSchema = new mongoose.Schema<IUser>(
@@ -45,4 +45,4 @@ userSchema.statics.isPasswordMatched = async function (
 ) {
   return await bcrypt.compare(planeTextPassword, hashedPassword);
 };
-export const User = model<IUser>("User", userSchema);
+export const User = model<IUser, UserModel>("User", userSchema);
