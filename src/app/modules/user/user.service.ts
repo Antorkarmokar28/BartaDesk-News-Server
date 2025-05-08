@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { sendImageCloudinary } from "../../utils/fileUploads";
-import { IUser } from "./user.interface";
-import { User } from "./user.model";
+import { sendImageCloudinary } from '../../utils/fileUploads';
+import { IUser } from './user.interface';
+import { User } from './user.model';
 
 const registerUserIntoDB = async (file: any, payload: IUser) => {
   // storage image into cloudinary
@@ -14,6 +14,12 @@ const registerUserIntoDB = async (file: any, payload: IUser) => {
   return result;
 };
 
+const getAllUserFromDB = async () => {
+  const result = await User.find();
+  return result;
+};
+
 export const UserService = {
   registerUserIntoDB,
+  getAllUserFromDB,
 };

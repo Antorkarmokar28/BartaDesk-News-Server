@@ -3,6 +3,7 @@ import { userRouter } from '../modules/user/user.route';
 import { authRouter } from '../modules/auth/auth.route';
 import { categoryRouter } from '../modules/category/category.route';
 import { tagRouter } from '../modules/tag/tag.route';
+import { newsRouter } from '../modules/news/news.route';
 const router = Router();
 const modulesRoute = [
   {
@@ -20,6 +21,10 @@ const modulesRoute = [
   {
     path: '/tags',
     route: tagRouter,
+  },
+  {
+    path: '/news',
+    route: newsRouter,
   },
 ];
 
