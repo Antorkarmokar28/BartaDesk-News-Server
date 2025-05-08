@@ -15,7 +15,8 @@ const registerUser = catchAsynch(async (req, res) => {
 });
 
 const getAllUser = catchAsynch(async (req, res) => {
-  const result = await UserService.getAllUserFromDB();
+  const query = req.query;
+  const result = await UserService.getAllUserFromDB(query);
   sendResponse(res, {
     statusCode: StatusCodes.CREATED,
     success: true,
@@ -24,7 +25,43 @@ const getAllUser = catchAsynch(async (req, res) => {
   });
 });
 
+const getSingleUser = catchAsynch(async (req, res) => {
+  const { _id } = req.params;
+  const result = await UserService.getSingleUserFromDB(_id);
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    success: true,
+    message: 'User delete is successfully',
+    data: result,
+  });
+});
+
+const updateUser = catchAsynch(async (req, res) => {
+  const { _id } = req.params;
+  const result = await UserService.updateUserIntoDB(_id, req.body);
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    success: true,
+    message: 'User update is successfully',
+    data: result,
+  });
+});
+
+const deleteUser = catchAsynch(async (req, res) => {
+  const { _id } = req.params;
+  const result = await UserService.deleteUserFromDB(_id);
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    success: true,
+    message: 'User delete is successfully',
+    data: result,
+  });
+});
+
 export const UserController = {
   registerUser,
   getAllUser,
+  getSingleUser,
+  updateUser,
+  deleteUser,
 };
