@@ -4,6 +4,7 @@ import { authRouter } from '../modules/auth/auth.route';
 import { categoryRouter } from '../modules/category/category.route';
 import { tagRouter } from '../modules/tag/tag.route';
 import { newsRouter } from '../modules/news/news.route';
+import { commentRouter } from '../modules/comment/comment.route';
 const router = Router();
 const modulesRoute = [
   {
@@ -25,6 +26,10 @@ const modulesRoute = [
   {
     path: '/news',
     route: newsRouter,
+  },
+  {
+    path: '/comments',
+    route: commentRouter,
   },
 ];
 
